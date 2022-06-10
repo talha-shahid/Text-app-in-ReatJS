@@ -31,16 +31,34 @@ export default function TextForm(props) {
       props.showAlert("Copied to Clipboard!", "success");
       props.showAlert("Copied Text to Clipboard", "success");
     }
+
+    const speak = () => {
+      let msg = new SpeechSynthesisUtterance();
+      msg.text = text;
+      window.speechSynthesis.speak(msg);
+    }
+
+    const handleReverse = (event) => {
+      /* Convert string to array*/
+      let strArr = text.split("");
+      /* Reverse array*/
+      strArr = strArr.reverse();
+      /* Convert array to string*/
+      let newText = strArr.join("");
+      setText(newText);
+    };
     //A sate text, and it is initialized to empty
     const[text,setText] = useState("");
   return (
     <form>
-        <div className="container mt-5" style={{backgroundColor: props.mode==='dark'?'#323131ad':'white',color: props.mode==='dark'?'white':'black'}}>
+        <div className="container mt-3" style={{backgroundColor: props.mode==='dark'?'#323131ad':'white',color: props.mode==='dark'?'white':'black'}}>
         <h1>{props.heading}</h1>
         <textarea className="form-control" placeholder='Start Typing...' style={{backgroundColor: props.mode==='dark'?'#323131ad':'white',color: props.mode==='dark'?'white':'black'}} value={text} rows="8" onChange={handleOnChange}/>
         <button type="button" className="btn btn-primary mt-2 my-2" onClick ={handleUpClick}>UpperCase</button>
         <button type="button" className="btn btn-primary mt-2 my-2 mx-2" onClick ={handleLowClick}>LowerCase</button>
-        <button id="b3" type="button" className="btn btn-primary mt-2 my-2" onClick ={handleCopy} style={{backgroundColor: props.color}}>Copy</button>
+        <button type="button" className="btn btn-primary mt-2 my-2" onClick ={handleCopy}>Copy</button>
+        <button type="button" className="btn btn-primary mt-2 my-2 mx-2" onClick ={speak}>Speak</button>
+        <button type="button" className="btn btn-primary mt-2 my-2" onClick ={handleReverse}>Reverse</button>
         </div>
     </form>
   )

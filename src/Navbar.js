@@ -1,18 +1,21 @@
 import React from 'react'
 import Proptypes from 'prop-types'
-import './Navbar.css';
+// import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 
 export default function Navbar(props) {
-  const pinkMode= ()=>{
-    document.body.style.backgroundColor= "pink";  }
+  // const pinkMode= ()=>{
+  //   document.body.style.backgroundColor= "pink";  }
+
 
   return (
-    
+   <> 
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
   <div className="container-fluid">
-    <Link to="/" className="navbar-brand" >{props.title}</Link>
+  <Link to="/">
+  <img src={require('./t2.jpg')} width='70' style={{border: '1px solid black',borderRadius: '10px', cursor:'pointer'}}/></Link>
+    <Link to="/" className="navbar-brand" style={{marginLeft: '10px'}}><b>{props.title}</b></Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -31,7 +34,7 @@ export default function Navbar(props) {
         <button className="btn btn-outline-success" type="submit">Search</button>
       </form> */}
       
-      <div id="pink" onClick={pinkMode}></div>
+      {/* <div id="pink" onClick={pinkMode}></div> */}
 
 
       <div className={`custom-control custom-switch text-${props.mode==='light'?"dark":"light"}`}>
@@ -45,7 +48,8 @@ export default function Navbar(props) {
   </div>
 
 </nav>
-
+<hr style={{margin:'0px'}}/>
+</>
   )
 }
 
